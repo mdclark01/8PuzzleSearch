@@ -19,7 +19,7 @@ public class Main {
 
             //Make sure board is solvable & put gameboard in the queue
             newBFSSearch
-                .checkIfSolvable(initialNode);
+                .checkIfSolvable(initialNode)
                 .frontier.add(initialNode);
 
             // START searching the queue and generating successors
@@ -30,9 +30,9 @@ public class Main {
                     System.out.print(bfsDepth + " ");
                 }
                 newBFSSearch
-                    .moveLeft(newBFSSearch.frontier.peek());
-                    .moveRight(newBFSSearch.frontier.peek());
-                    .moveUp(newBFSSearch.frontier.peek());
+                    .moveLeft(newBFSSearch.frontier.peek())
+                    .moveRight(newBFSSearch.frontier.peek())
+                    .moveUp(newBFSSearch.frontier.peek())
                     .moveDown(newBFSSearch.frontier.poll());
             }
 
@@ -54,11 +54,11 @@ public class Main {
                 int peekedValue = newAStarSearch.frontier.peek();
 
                 newAStarSearch
-                    .isGoalState(peekedValue);
-                    .moveLeft(peekedValue);
-                    .moveRight(peekedValue);
-                    .moveUp(peekedValue);
-                    .moveDown(peekedValue);
+                    .isGoalState(peekedValue)
+                    .moveLeft(peekedValue)
+                    .moveRight(peekedValue)
+                    .moveUp(peekedValue)
+                    .moveDown(peekedValue)
                     .explored.add(newAStarSearch.frontier.poll());
             }
         }

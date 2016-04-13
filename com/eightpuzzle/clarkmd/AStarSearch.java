@@ -1,16 +1,17 @@
-package com.iupui.clarkmd;
+package com.eightpuzzle.clarkmd;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import com.eightpuzzle.clarkmd.*;
 
 /**
- * Created by Zues on 2/21/15.
+ * Created by Michael Clark.
  */
 public class AStarSearch {
 
     public Queue<Node> frontier = new PriorityQueue<Node>(nodeComparator);
     public ArrayList<Node> explored = new ArrayList<Node>();
-
-//    public ArrayList<Node> frontier = new ArrayList<Node>();
 
     // goal state to check against
     public int[] goalState = {1,2,3,4,5,6,7,8,0};
@@ -21,7 +22,7 @@ public class AStarSearch {
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveLeft(Node currentBoard){
+    public AStarSearch moveLeft(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace != 0 && freeSpace != 3 && freeSpace !=6){
@@ -32,10 +33,11 @@ public class AStarSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace - 1, 0);
             addNewBoard(copyOfBoard);
         }
+        return this;
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveRight(Node currentBoard){
+    public AStarSearch moveRight(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace != 2 && freeSpace != 5 && freeSpace !=8){
@@ -46,10 +48,11 @@ public class AStarSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace + 1, 0);
             addNewBoard(copyOfBoard);
         }
+        return this;
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveUp(Node currentBoard){
+    public AStarSearch moveUp(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace > 2){
@@ -60,10 +63,11 @@ public class AStarSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace - 3, 0);
             addNewBoard(copyOfBoard);
         }
+        return this;
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveDown(Node currentBoard){
+    public AStarSearch moveDown(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace < 6){
@@ -74,9 +78,10 @@ public class AStarSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace + 3, 0);
             addNewBoard(copyOfBoard);
         }
+        return this;
     }
 
-    public  void isGoalState(Node newBoard){
+    public  AStarSearch isGoalState(Node newBoard){
         if(newBoard.getShuffledBoard().toString().equals("[1, 2, 3, 4, 5, 6, 7, 8, 0]")){
             //found a solution since the hval is 0 it must be equal to the goal
             System.out.println("Found Solution at depth "+ newBoard.getDepth());
@@ -89,29 +94,14 @@ public class AStarSearch {
             }
             System.exit(0);
         }
+        return this;
     }
 
     public void addNewBoard(Node newBoard){
-
         //calculate the hval
         for(int i=0; i<9; i++){
-            if(i == 0 && newBoard.getShuffledBoard().get(i) != 1){
-                newBoard.addOneToHval();
-            }else if (i == 1 && newBoard.getShuffledBoard().get(i) != 2){
-                newBoard.addOneToHval();
-            }else if (i == 2 && newBoard.getShuffledBoard().get(i) != 3){
-                newBoard.addOneToHval();
-            }else if (i == 3 && newBoard.getShuffledBoard().get(i) != 4){
-                newBoard.addOneToHval();
-            }else if (i == 4 && newBoard.getShuffledBoard().get(i) != 5){
-                newBoard.addOneToHval();
-            }else if (i == 5 && newBoard.getShuffledBoard().get(i) != 6){
-                newBoard.addOneToHval();
-            }else if (i == 6 && newBoard.getShuffledBoard().get(i) != 7){
-                newBoard.addOneToHval();
-            }else if (i == 7 && newBoard.getShuffledBoard().get(i) != 8){
-                newBoard.addOneToHval();
-            }
+             if(newBoard.getShuffledBoard().get(i) != i+1)
+                        newBoard.addOneToHval();
         }
 
         //see if board is already in open list assume its already there
@@ -160,7 +150,7 @@ public class AStarSearch {
         }
     };
 
-    public void checkIfSolvable(Node initalNode){
+    public AStarSearch checkIfSolvable(Node initalNode){
         int inversions = 0;
         for(int i=3; i<4; i++){
             for(int j=i+1; j<9; j++){

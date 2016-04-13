@@ -1,11 +1,11 @@
-package com.iupui.clarkmd;
+package com.eightpuzzle.clarkmd;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by Michael Clark on 2/18/15.
+ * Created by Michael Clark.
  */
 public class Node {
     private ArrayList<Integer> gameBoard;
@@ -17,18 +17,11 @@ public class Node {
     public Node(){
         //Make a new board
         this.gameBoard = new ArrayList<Integer>();
-        //Create Game Board
-        this.gameBoard.add(0);
-        this.gameBoard.add(1);
-        this.gameBoard.add(2);
-        this.gameBoard.add(3);
-        this.gameBoard.add(4);
-        this.gameBoard.add(5);
-        this.gameBoard.add(6);
-        this.gameBoard.add(7);
-        this.gameBoard.add(8);
-
-        //shuffle game board
+        
+        for(int i=0; i<9; i++){
+            this.gameBoard.add(i);
+        }
+        
         Collections.shuffle(this.gameBoard);
     }
 

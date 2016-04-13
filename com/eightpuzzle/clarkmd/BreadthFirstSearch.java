@@ -1,11 +1,11 @@
-package com.iupui.clarkmd;
+package com.eightpuzzle.clarkmd;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import com.iupui.clarkmd.*;
+import com.eightpuzzle.clarkmd.*;
 /**
- * Created by Zues on 2/20/15.
+ * Created by Michael Clark.
  */
 public class BreadthFirstSearch {
 
@@ -22,7 +22,7 @@ public class BreadthFirstSearch {
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveLeft(Node currentBoard){
+    public BreadthFirstSearch moveLeft(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace != 0 && freeSpace != 3 && freeSpace !=6){
@@ -33,10 +33,11 @@ public class BreadthFirstSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace - 1, 0);
             isGoalState(copyOfBoard);
         }
+        return this;
     }
 
     //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveRight(Node currentBoard){
+    public BreadthFirstSearch moveRight(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace != 2 && freeSpace != 5 && freeSpace !=8){
@@ -47,10 +48,10 @@ public class BreadthFirstSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace + 1, 0);
             isGoalState(copyOfBoard);
         }
+        return this;
     }
 
-    //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveUp(Node currentBoard){
+    public BreadthFirstSearch moveUp(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace > 2){
@@ -61,10 +62,10 @@ public class BreadthFirstSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace - 3, 0);
             isGoalState(copyOfBoard);
         }
+        return this;
     }
 
-    //Takes the current board initial or top of queue and makes a copy of it places copy in queue.
-    public void moveDown(Node currentBoard){
+    public BreadthFirstSearch moveDown(Node currentBoard){
         //Move blank space left current position of blank space -1
         int freeSpace = currentBoard.getShuffledBoard().indexOf(0);
         if(freeSpace < 6){
@@ -75,6 +76,7 @@ public class BreadthFirstSearch {
             copyOfBoard.getShuffledBoard().set(freeSpace + 3, 0);
             isGoalState(copyOfBoard);
         }
+        return this;
     }
 
     public void isGoalState(Node newBoard){
@@ -102,7 +104,7 @@ public class BreadthFirstSearch {
         }
     }
 
-    public void checkIfSolvable(Node initalNode){
+    public BreadthFirstSearch checkIfSolvable(Node initalNode){
         int inversions = 0;
         for(int i=3; i<4; i++){
             for(int j=i+1; j<9; j++){
@@ -115,6 +117,8 @@ public class BreadthFirstSearch {
             System.out.println("NO SOLUTION FOR BOARD");
             System.exit(0);
         }
+        
+        return this;
     }
 
     //Print the board passed to it
